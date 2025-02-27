@@ -36,10 +36,7 @@ class DataExtractor:
         if not isinstance(text, str):
             return ""
         text = text.lower()
-        """ text = regex.sub(r'[^\w\s@#\p{Sc}/:\.]', '', text)
-        text = regex.sub(r'\s+', ' ', text).strip() """
         text = regex.sub(r'[^\w\s@#\p{Sc}/:\.\-\?\=&]', '', text)
-        #text = regex.sub(r'\s+', ' ', text).strip()
         return text
 
     def extract_hashtags(self, text: str) -> list:
@@ -65,7 +62,8 @@ class DataExtractor:
         if not isinstance(text, str):
             return []
         #return regex.findall(r"https?://[a-zA-Z]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*/?", text)
-        return regex.findall(r"https?://\S+", text)
+        #return regex.findall(r"https?://\S+", text)
+        return regex.findall(r"https?://(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}(?:[/?#]\S*)?")
 
     def extract_price(self, text: str) -> list:
         """
