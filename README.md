@@ -1,13 +1,13 @@
 # Práctica 1 MAIS3-BAIN: Extracción y Análisis de Datos de Twitter/X
 
-### Requisitos:
-- Python 3.x
-- Regex
-- Pandas
-- praw (para la extracción desde Reddit)
+### Requisitos
+Para ejecutar los scripts es necesario instalar las siguientes dependencias:
+
+```bash
+pip install pandas regex praw emoji
+```
 
 ### DataExtractor.py:
-
 #### Descripción
 *DataExtractor* es una clase en Python diseñada para procesar archivos CSV que contienen datos de Twitter/X (usando el dataset de Bitcoin provisto en la práctica) o Reddit (extraído con `ApiReddit.ipynb`). Su objetivo es extraer información clave de los tweets/posts, incluyendo:
 - URLs
@@ -37,7 +37,7 @@ extractor.save_file("processed_data.csv")
 ```
 
 ## Parte 0: Análisis de Elementos
-En la práctica se pide hacer un notebook de análisis. Con `analisis_elementos.ipynb` se corren distintos tipos de análisis sobre cada tipo de dato extraído de los tweets/posts.
+En la práctica se pide un notebook con análisis de los datos extraídos. Con `analisis_elementos_tweets/posts.ipynb` se corren distintos tipos de análisis sobre cada tipo de dato extraído de los tweets/posts.
 
 ## Parte 1: Análisis de Twitter
 ### Practica1_P1.ipynb
@@ -200,3 +200,7 @@ Este notebook es una versión duplicada de `Practica1_P1.ipynb`, pero adaptada p
   </tbody>
 </table>
 </div>
+
+### Análisis sobre los posts
+Notas sobre lo encontrado incluyen las siguientes:
+- En Reddit se estilan mucho menos los hashtags y menciones, aunque en este caso los URLs no son mayoritariamente referencias a otros posts como en Twitter.
