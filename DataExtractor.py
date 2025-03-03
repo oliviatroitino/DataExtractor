@@ -35,8 +35,6 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return ""
-        #text = text.lower()
-        #text = regex.sub(r'[^\w\s@#\p{Sc}/:\.\-\?\=&]', '', text)
         text = regex.sub("#x200B", "", text)
         return text
 
@@ -50,7 +48,6 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return []
-        #return regex.findall(r"#[a-zA-Z0-9]+(?=\s|[.,!?:;]|$)", text)
         return regex.findall(r'(?<!\w)(#[\p{L}\p{N}_]+)', text)
 
     def extract_urls(self, text: str) -> list:
@@ -75,11 +72,6 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return []
-        #return regex.findall(r"\p{Sc}\d+(?:\.\d{2})?", text)
-        #matches = regex.findall(r'\$(\d+(?:\.\d+)?)', text)
-        #matches = regex.findall(r'\$\s?((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)', text)
-        """ matches = regex.findall(r'(?:\$\s?((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?))|(?:(?<!\S)((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)(?:\s?\$))', text)
-        return [float(match.replace(",", "")) for match in matches] """
         number = r'(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?'
         pattern = rf'(?:\$(?!\n)[ \t]?({number}))|(?:(?<=^|[^\d,\.])({number})(?=[ \t]?\$))'
         
