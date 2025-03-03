@@ -36,9 +36,6 @@ df = extractor.process_text()
 extractor.save_file("processed_data.csv")
 ```
 
-## Parte 0: Análisis de Elementos
-En la práctica se pide un notebook con análisis de los datos extraídos. Con `analisis_elementos_tweets/posts.ipynb` se corren distintos tipos de análisis sobre cada tipo de dato extraído de los tweets/posts.
-
 ## Parte 1: Análisis de Twitter
 ### Practica1_P1.ipynb
 Este notebook analiza los datos de Bitcoin_tweets_dataset_2.csv, el dataset proporcionado en la práctica. Sin embargo, puede utilizarse con cualquier dataset en formato CSV siempre que contenga:
