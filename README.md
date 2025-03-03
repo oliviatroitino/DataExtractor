@@ -38,7 +38,12 @@ extractor.save_file("processed_data.csv")
 
 ## Parte 1: Análisis de Twitter
 ### Practica1_P1.ipynb
-En *Practica1_P1.ipynb*, se analiza el fichero *Bitcoin_tweets_dataset_2.csv* dado para la práctica, pero funciona con cualquier dataset csv del que se pueda extraer una columna de texto y una de usuario/autor. El único cambio entre este fichero y el *Practica1_P2* es el nombre del csv original y el csv que sale del df.
+Este notebook analiza los datos de Bitcoin_tweets_dataset_2.csv, el dataset proporcionado en la práctica. Sin embargo, puede utilizarse con cualquier dataset en formato CSV siempre que contenga:
+
+- Una columna con el texto del tweet.
+- Una columna con el nombre de usuario.
+
+El único ajuste necesario para reutilizar este notebook es cambiar el nombre del CSV original y el de salida.
 
 #### Ejemplo de output:
 <div>
@@ -106,65 +111,18 @@ En *Practica1_P1.ipynb*, se analiza el fichero *Bitcoin_tweets_dataset_2.csv* da
       <td>[💥, 🫡]</td>
       <td>[]</td>
     </tr>
-    <tr>
-      <th>5</th>
-      <td>AkinHack</td>
-      <td>Y’all Message me for any account recovery or h...</td>
-      <td>[#CYBER, #security, #Coinbase, #Bitcoin, #BNB,...</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>CAIR (Pump/Dump)</td>
-      <td>PUMP : 4-Hour Chart (1x!) (NORMAL)\nCoin    : ...</td>
-      <td>[#FILUSDT, #FIL, #Bitcoin]</td>
-      <td>[https://t.co/zKtYat6duH]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>NFTevening</td>
-      <td>📰TwelveFold by @yugalabs Unveils Unique #Bitco...</td>
-      <td>[#Bitcoin, #NFTs]</td>
-      <td>[https://t.co/UqSa1MkQiJ]</td>
-      <td>[]</td>
-      <td>[📰, 🟣, 🟣]</td>
-      <td>[@yugalabs]</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>AbdeL</td>
-      <td>@BitcoinBullsNFT The first my #NFT in  #Bitcoi...</td>
-      <td>[#NFT, #Bitcoin]</td>
-      <td>[https://t.co/hO6t69frCZ]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[@BitcoinBullsNFT]</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>PUBLORD</td>
-      <td>Your first #Bitcoin Halving will age and humbl...</td>
-      <td>[#Bitcoin]</td>
-      <td>[https://t.co/U6JwlLNlMg]</td>
-      <td>[]</td>
-      <td>[😉😂]</td>
-      <td>[]</td>
-    </tr>
   </tbody>
 </table>
 </div>
 
 ## Parte 2: Análisis de Reddit
 ### ApiReddit.ipynb
-El análisis de Reddit tiene un paso extra previo comparado con el proceso de análisis de Twitter, el cual es extraer posts de la api de Reddit con el fichero *ApiReddit.ipynb*. Este fichero utiliza la biblioteca *praw* para extraer datos de Reddit, específicamente del subreddit *r/Twitter*. Su objetivo es recopilar publicaciones y guardar la información en un archivo CSV para su posterior análisis.
+A diferencia del análisis de Twitter, acá se requiere un paso extra previo: la extracción de posts desde la API de Reddit.
+
+Este notebook usa la biblioteca **praw** para obtener datos del subreddit *r/Twitter*, recopilando las 1000 publicaciones más populares y guardándolas en un archivo CSV (`reddit_data.csv`), que luego será procesado por `DataExtractor.py`.
 
 ### Practica1_P2.ipynb
+Este notebook es una versión duplicada de `Practica1_P1.ipynb`, pero adaptada para trabajar con los datos extraídos de Reddit. En el caso de Reddit, son mucho menos comúnes los hashtags y menciones.
 
 #### Ejemplo de output:
 <div>
@@ -226,56 +184,6 @@ El análisis de Reddit tiene un paso extra previo comparado con el proceso de an
       <th>4</th>
       <td>KingKandyOwO</td>
       <td>Twitter gives me a notification of new tweets,...</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>betimd</td>
-      <td>I bought premium account and my profile shows ...</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Murky-Perception-349</td>
-      <td>Trying to view an account with tweets that has...</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Rok_Horvat_14</td>
-      <td>I do a lot of liking on Twitter/X &amp; I want to ...</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>CobolCoder1983</td>
-      <td>I've reported literally hundreds of them but i...</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>vincentsigmafreeman</td>
-      <td>Will X premium on web sync with my app…</td>
       <td>[]</td>
       <td>[]</td>
       <td>[]</td>
