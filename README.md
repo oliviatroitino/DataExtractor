@@ -15,8 +15,10 @@
 - Precios (con variedad de formatos, incluyendo $1234.56, $ 1,234.56, 1234.5$, etc.)
 - Menciones (con formato @usuario para Twitter y u/usuario para Reddit)
 - Emojis
+
 Recibe como parámetros el fichero csv y el `chunksize`, que por default tiene el valor de `100000`.
 El resultado se almacena en un DataFrame de pandas, con cada elemento extraído en una columna separada. Luego, se exporta como un archivo CSV para análisis en los Jupyter Notebooks:
+
 - `Practica1_P1.ipynb` → Análisis de tweets de Twitter.
 - `Practica1_P2.ipynb` → Análisis de posts de Reddit.
 
