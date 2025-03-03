@@ -7,7 +7,7 @@ class DataExtractor:
         Inicializa el extractor con el archivo de origen.
         Parámetro:
             source_file: Ruta al archivo de datos (CSV o JSON).
-            chunksize: Tamaño de los fragmentos de datos a cargar.
+            chunksize: Tamaño de los fragmentos de datos a cargar
         """
         self.source_file = source_file
         self.data = None
