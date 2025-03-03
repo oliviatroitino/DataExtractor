@@ -35,8 +35,9 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return ""
-        text = text.lower()
-        text = regex.sub(r'[^\w\s@#\p{Sc}/:\.\-\?\=&]', '', text)
+        #text = text.lower()
+        #text = regex.sub(r'[^\w\s@#\p{Sc}/:\.\-\?\=&]', '', text)
+        text = regex.sub("#x200B", "", text)
         return text
 
     def extract_hashtags(self, text: str) -> list:
@@ -49,7 +50,8 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return []
-        return regex.findall(r"#[a-zA-Z0-9]+(?=\s|[.,!?:;]|$)", text)
+        #return regex.findall(r"#[a-zA-Z0-9]+(?=\s|[.,!?:;]|$)", text)
+        return regex.findall(r'(?<!\w)(#[\p{L}\p{N}_]+)', text)
 
     def extract_urls(self, text: str) -> list:
         """
@@ -61,9 +63,7 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return []
-        #return regex.findall(r"https?://[a-zA-Z]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*/?", text)
-        #return regex.findall(r"https?://\S+", text)
-        return regex.findall(r"https?://(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}(?:[/?#]\S*)?")
+        return regex.findall(r"https?://\S+", text)
 
     def extract_price(self, text: str) -> list:
         """
@@ -75,7 +75,20 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return []
-        return regex.findall(r"\p{Sc}\d+(?:\.\d{2})?", text)
+        #return regex.findall(r"\p{Sc}\d+(?:\.\d{2})?", text)
+        #matches = regex.findall(r'\$(\d+(?:\.\d+)?)', text)
+        #matches = regex.findall(r'\$\s?((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)', text)
+        """ matches = regex.findall(r'(?:\$\s?((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?))|(?:(?<!\S)((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)(?:\s?\$))', text)
+        return [float(match.replace(",", "")) for match in matches] """
+        number = r'(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?'
+        pattern = rf'(?:\$(?!\n)[ \t]?({number}))|(?:(?<=^|[^\d,\.])({number})(?=[ \t]?\$))'
+        
+        prices = []
+        for match in regex.finditer(pattern, text):
+            num = match.group(1) if match.group(1) is not None else match.group(2)
+            if num:
+                prices.append(float(num.replace(",", "")))
+        return prices
 
 
     def extract_emoticons(self, text: str) -> list:
@@ -100,7 +113,7 @@ class DataExtractor:
         """
         if not isinstance(text, str):
             return []
-        return regex.findall(r"(?<=\s|^)@([a-zA-Z0-9](?:[a-zA-Z0-9._]{1,13})?[a-zA-Z0-9])(?=\s|[.,!?:;]|$)", text)
+        return regex.findall(r"(?<=\s|^)((?:@|u/)[a-zA-Z0-9](?:[a-zA-Z0-9._]{1,13})?[a-zA-Z0-9])(?=\s|[.,!?:;]|$)(?!')", text)
 
     def process_text(self) -> pd.DataFrame:
         """
